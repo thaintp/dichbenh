@@ -1,8 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import {
+  fetchGlobalData,
+  fetchLocalData,
+  fetchDailyData,
+  fetchCountriesName,
+} from "./api";
 
 function App() {
+  console.log(fetchGlobalData());
+  console.log(fetchLocalData("vietnam"));
+  console.log(fetchDailyData());
+  console.log(fetchCountriesName());
   return (
     <div className="App">
       <header className="App-header">
