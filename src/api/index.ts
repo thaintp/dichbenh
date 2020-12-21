@@ -7,12 +7,13 @@ export const fetchGlobalData = async () => {
     const {
       data: { confirmed, recovered, deaths, lastUpdate },
     } = await axios.get(url);
-    return {
+    const res: dataType = {
       confirmed: confirmed.value,
       recovered: recovered.value,
       deaths: deaths.value,
       lastUpdate,
     };
+    return res;
   } catch (error) {
     console.log(error);
   }
@@ -23,12 +24,13 @@ export const fetchLocalData = async (country: string) => {
     const {
       data: { confirmed, recovered, deaths, lastUpdate },
     } = await axios.get(`${url}/countries/${country}`);
-    return {
+    const res: dataType = {
       confirmed: confirmed.value,
       recovered: recovered.value,
       deaths: deaths.value,
       lastUpdate,
     };
+    return res;
   } catch (error) {
     console.log(error);
   }
