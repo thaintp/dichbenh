@@ -1,9 +1,10 @@
 .container {
   margin: 50px 0;
+  width: 100%;
 }
 
 .card {
-  margin: 0 1% !important;
+  margin: 1% 1% !important;
 }
 
 .infected {
@@ -21,10 +22,3 @@
 .deaths {
   border-bottom: 10px solid rgba(255, 0, 0, 0.5);
 }
-
-@media (max-width: 770px) {
-  .card {
-    margin: 1% 0 !important;
-  }
-}
-
