@@ -1,9 +1,4 @@
-import {
-  fetchGlobalData,
-  fetchLocalData,
-  fetchDailyData,
-  fetchCountriesName,
-} from "./api";
+import { fetchGlobalData, fetchLocalData } from "./api";
 import { Cards, Chart, CountryPicker } from "./components";
 import styles from "./App.module.css";
 import { useState, useEffect } from "react";
@@ -21,7 +16,6 @@ const App = () => {
   }, []);
 
   const handleCountryChange = async (country: string) => {
-    console.log(country);
     const fetchedData = await (country
       ? fetchLocalData(country)
       : fetchGlobalData());
@@ -34,7 +28,7 @@ const App = () => {
       <img className={styles.image} src={ncovImage} alt="COVID-19" />
       <Cards {...data} />
       <CountryPicker handleCountryChange={handleCountryChange} />
-      <Chart />
+      <Chart country={country} {...data} />
     </div>
   );
 };
