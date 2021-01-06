@@ -6,7 +6,7 @@ import ncovImage from "./images/image.png";
 
 const App = () => {
   const [data, setData] = useState<dataType | undefined>(undefined);
-  const [country, setCountry] = useState<string>("");
+  const [country, setCountry] = useState<string>("Global");
 
   useEffect(() => {
     const fetchData = async () => {
