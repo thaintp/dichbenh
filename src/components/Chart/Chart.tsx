@@ -16,10 +16,10 @@ interface propsType extends dataType {
 
 const Chart = ({
   country,
-  confirmed = 0,
+  cases = 0,
+  active = 0,
   recovered = 0,
   deaths = 0,
-  lastUpdate = new Date(),
 }: propsType) => {
   const [dailyData, setDailyData] = useState<dailyDataType[]>([]);
 
@@ -57,7 +57,7 @@ const Chart = ({
       }}
     />
   );
-  const barChart = confirmed ? (
+  const barChart = cases ? (
     <Bar
       data={{
         labels: ["Bị nhiễm", "Đang nhiễm", "Hồi phục", "Tử vong"],
@@ -70,12 +70,7 @@ const Chart = ({
               "rgba(0, 255, 0, 0.5)",
               "rgba(255, 0, 0, 0.5)",
             ],
-            data: [
-              confirmed,
-              confirmed - recovered - deaths,
-              recovered,
-              deaths,
-            ],
+            data: [cases, active, recovered, deaths],
           },
         ],
       }}

@@ -5,7 +5,8 @@ import cx from "classnames";
 import styles from "./Cards.module.css";
 
 const Cards = ({
-  confirmed = 0,
+  cases = 0,
+  active = 0,
   recovered = 0,
   deaths = 0,
   lastUpdate = new Date(),
@@ -26,7 +27,7 @@ const Cards = ({
               NHIỄM BỆNH
             </Typography>
             <Typography variant="h5">
-              <CountUp start={0} end={confirmed} duration={1.8} separator="." />
+              <CountUp start={0} end={cases} duration={1.8} separator="." />
             </Typography>
             <Typography color="textSecondary">
               Cập nhật: {new Date(lastUpdate).toLocaleString()}
@@ -46,12 +47,7 @@ const Cards = ({
               ĐANG NHIỄM BỆNH
             </Typography>
             <Typography variant="h5">
-              <CountUp
-                start={0}
-                end={confirmed - recovered - deaths}
-                duration={1.8}
-                separator="."
-              />
+              <CountUp start={0} end={active} duration={1.8} separator="." />
             </Typography>
             <Typography color="textSecondary">
               Cập nhật: {new Date(lastUpdate).toLocaleString()}
