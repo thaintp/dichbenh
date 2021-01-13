@@ -74,3 +74,15 @@ export const fetchCountriesName = async () => {
     console.log(error);
   }
 };
+
+export const fetchTimeSeries = async () => {
+  try {
+    const data = await axios.get(
+      "https://pomber.github.io/covid19/timeseries.json"
+    );
+    console.log(data.data);
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

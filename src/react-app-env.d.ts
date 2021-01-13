@@ -8,3 +8,10 @@ interface dataType {
   deaths?: number;
   lastUpdate?: Date;
 }
+
+interface timeSeriesType {
+  confirmed: number;
+  date: string;
+  deaths: number;
+  recovered: number;
+}

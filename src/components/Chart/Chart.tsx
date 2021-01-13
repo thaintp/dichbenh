@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Line, Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import { fetchDailyData } from "../../api";
 
 import styles from "./Chart.module.css";
@@ -7,82 +7,88 @@ import styles from "./Chart.module.css";
 interface dailyDataType {
   confirmed: number;
   deaths: number;
-  date: Date;
+  recovered: number;
+  date: string;
 }
 
-interface propsType extends dataType {
-  country?: string;
+interface propsType {
+  country: string;
+  countryTimeSeries: timeSeriesType[];
 }
 
-const Chart = ({
-  country,
-  cases = 0,
-  active = 0,
-  recovered = 0,
-  deaths = 0,
-}: propsType) => {
+const Chart = ({ country, countryTimeSeries }: propsType) => {
   const [dailyData, setDailyData] = useState<dailyDataType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      setDailyData((await fetchDailyData()).reverse());
+      if (country === "Global") {
+        setDailyData((await fetchDailyData()).reverse());
+      }
     };
     fetchData();
   }, []);
 
-  const lineChart = (
-    <Line
-      data={{
-        labels: dailyData.map(({ date }: dailyDataType) =>
-          new Date(date).toLocaleDateString()
-        ),
-        datasets: [
-          {
-            data: dailyData.map(({ confirmed }: dailyDataType) => confirmed),
-            label: "CA NHIỄM",
-            borderColor: "rgba(0, 0, 255, 0.5)",
-            fill: true,
-          },
-          {
-            data: dailyData.map(({ deaths }: dailyDataType) => deaths),
-            label: "TỬ VONG",
-            borderColor: "rgba(255, 0, 0, 0.5)",
-            fill: true,
-          },
-        ],
-      }}
-      options={{
-        legend: { display: false },
-        title: { display: true, text: `Biểu đồ trên toàn thế giới` },
-      }}
-    />
-  );
-  const barChart = cases ? (
-    <Bar
-      data={{
-        labels: ["Bị nhiễm", "Đang nhiễm", "Hồi phục", "Tử vong"],
-        datasets: [
-          {
-            label: "Số ca",
-            backgroundColor: [
-              "rgba(0, 0, 255, 0.5)",
-              "#ff9c00",
-              "rgba(0, 255, 0, 0.5)",
-              "rgba(255, 0, 0, 0.5)",
-            ],
-            data: [cases, active, recovered, deaths],
-          },
-        ],
-      }}
-      options={{
-        legend: { display: false },
-        title: { display: true, text: `Biểu đồ của nước ${country}` },
-      }}
-    />
-  ) : null;
   return (
     <div className={styles.container}>
-      {country === "Global" ? lineChart : barChart}
+      {country === "Global" ? (
+        <Line
+          data={{
+            labels: dailyData.map(({ date }: dailyDataType) =>
+              new Date(date).toLocaleDateString()
+            ),
+            datasets: [
+              {
+                data: dailyData.map(
+                  ({ confirmed }: dailyDataType) => confirmed
+                ),
+                label: "CA NHIỄM",
+                borderColor: "rgba(0, 0, 255, 0.5)",
+                fill: true,
+              },
+              {
+                data: dailyData.map(({ deaths }: dailyDataType) => deaths),
+                label: "TỬ VONG",
+                borderColor: "rgba(255, 0, 0, 0.5)",
+                fill: true,
+              },
+            ],
+          }}
+          options={{
+            legend: { display: false },
+            title: { display: true, text: `Biểu đồ trên toàn thế giới` },
+          }}
+        />
+      ) : (
+        <Line
+          data={{
+            labels: countryTimeSeries.map(({ date }: timeSeriesType) =>
+              new Date(date).toLocaleDateString()
+            ),
+            datasets: [
+              {
+                data: countryTimeSeries.map(
+                  ({ confirmed }: timeSeriesType) => confirmed
+                ),
+                label: "CA NHIỄM",
+                borderColor: "rgba(0, 0, 255, 0.5)",
+                fill: true,
+              },
+              {
+                data: countryTimeSeries.map(
+                  ({ deaths }: timeSeriesType) => deaths
+                ),
+                label: "TỬ VONG",
+                borderColor: "rgba(255, 0, 0, 0.5)",
+                fill: true,
+              },
+            ],
+          }}
+          options={{
+            legend: { display: false },
+            title: { display: true, text: `Biểu đồ của nước ${country}` },
+          }}
+        />
+      )}
     </div>
   );
 };
