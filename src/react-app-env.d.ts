@@ -1,17 +1,20 @@
 /// <reference types="react-scripts" />
 
-interface dataType {
-  cases?: number;
-  active?: number;
-  confirmed?: number;
-  recovered?: number;
-  deaths?: number;
-  lastUpdate?: Date;
+interface dailyDataType {
+  confirmed: number;
+  recovered: number;
+  deaths: number;
+  date: string;
 }
 
-interface timeSeriesType {
-  confirmed: number;
-  date: string;
-  deaths: number;
-  recovered: number;
+interface fetchedDataType {
+  data: Record<string, dailyDataType[]>;
+  countriesName: string[];
+  worldChart: Record<string, dailyDataType>;
+  worldStats: dailyDataType;
+  where: string;
 }
+
+type Action =
+  | { type: "INIT"; payload: any }
+  | { type: "COUNTRY_CHANGE"; payload: string };
