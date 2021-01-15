@@ -1,5 +1,27 @@
 import axios from "axios";
 
+export const extractDaily = (dailyData: dailyDataType[]) => {
+  let confirmedDaily: number[] = [];
+  let recoveredDaily: number[] = [];
+  let deathDaily: number[] = [];
+  let activeDaily: number[] = [];
+  let dateDaily: string[] = [];
+  dailyData.forEach(({ confirmed, recovered, deaths, date }) => {
+    confirmedDaily.push(confirmed);
+    recoveredDaily.push(recovered);
+    deathDaily.push(deaths);
+    activeDaily.push(confirmed - recovered - deaths);
+    dateDaily.push(date);
+  });
+  return {
+    confirmedDaily,
+    recoveredDaily,
+    deathDaily,
+    activeDaily,
+    dateDaily,
+  };
+};
+
 export const fetchData = async () => {
   try {
     const res = await axios.get(
@@ -33,6 +55,7 @@ export const fetchData = async () => {
       data,
       worldChart: world,
       worldStats: world[world.length - 1],
+      ...extractDaily(world),
     };
   } catch (error) {
     console.log(error);

@@ -1,5 +1,5 @@
 import { useEffect, useReducer, createContext } from "react";
-import { fetchData } from "./api";
+import { fetchData, extractDaily } from "./api";
 import styles from "./App.module.css";
 import ncovImage from "./images/image.png";
 import { CountryPicker, Chart } from "./components";
@@ -16,6 +16,11 @@ const stateReducer = (state: fetchedDataType, action: Action) => {
     case "COUNTRY_CHANGE":
       return {
         ...state,
+        ...extractDaily(
+          action.payload === "Global"
+            ? state.worldChart
+            : state.data[action.payload]
+        ),
         where: action.payload,
       };
     default:

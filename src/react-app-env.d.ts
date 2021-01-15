@@ -10,9 +10,13 @@ interface dailyDataType {
 interface fetchedDataType {
   data: Record<string, dailyDataType[]>;
   countriesName: string[];
-  worldChart: Record<string, dailyDataType>;
+  worldChart: dailyDataType[];
   worldStats: dailyDataType;
   where: string;
+  confirmedDaily: number[];
+  deathDaily: number[];
+  activeDaily: number[];
+  dateDaily: string[];
 }
 
 type Action =

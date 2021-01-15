@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { Line } from "react-chartjs-2";
 import { AppContext } from "../../App";
 import { isMobile } from "react-device-detect";
@@ -7,49 +7,37 @@ import styles from "./Chart.module.css";
 
 const Chart = () => {
   const [state] = useContext(AppContext);
-  const [chart, setChart] = useState<dailyDataType[]>([]);
-
-  useEffect(() => {
-    if (state.data) {
-      setChart(
-        state.where !== "Global" ? state.data[state.where] : state.worldChart
-      );
-    }
-  }, [state]);
 
   return (
     <div className={styles.container}>
       <Line
         data={{
-          labels: chart.map(({ date }) => date),
+          labels: state.dateDaily,
           datasets: [
             {
               label: "Confirmed",
-              data: chart.map(({ confirmed }) => confirmed),
+              data: state.confirmedDaily,
               borderColor: "#4285f4",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
             },
             {
               label: "Recovered",
-              data: chart.map(({ recovered }) => recovered),
+              data: state.recoveredDaily,
               borderColor: "#0c9d58",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
             },
             {
               label: "Deaths",
-              data: chart.map(({ deaths }) => deaths),
+              data: state.deathDaily,
               borderColor: "#db4337",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
             },
             {
               label: "Active",
-              data: chart.map(
-                ({ confirmed, recovered, deaths }) =>
-                  confirmed - recovered - deaths
-              ),
+              data: state.activeDaily,
               borderColor: "#f4b400",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
