@@ -1,103 +1,30 @@
-// import { Card, CardContent, Typography, Grid } from "@material-ui/core";
-// import CountUp from "react-countup";
-// import cx from "classnames";
+import React, { useContext } from "react";
+import { Row } from "react-bootstrap";
+import { AppContext } from "../../App";
+import Card from "./Card";
 
-// import styles from "./Cards.module.css";
+const Cards = () => {
+  const [state] = useContext(AppContext);
 
-// const Cards = ({
-//   cases = 0,
-//   active = 0,
-//   recovered = 0,
-//   deaths = 0,
-//   lastUpdate = new Date(),
-// }) => {
-//   return (
-//     <div className={styles.container}>
-//       <Grid container justify="center">
-//         <Grid
-//           item
-//           component={Card}
-//           xs={12}
-//           md={5}
-//           lg={2}
-//           className={cx(styles.card, styles.infected)}
-//         >
-//           <CardContent>
-//             <Typography color="textSecondary" gutterBottom>
-//               NHIỄM BỆNH
-//             </Typography>
-//             <Typography variant="h5">
-//               <CountUp start={0} end={cases} duration={1.8} separator="." />
-//             </Typography>
-//             <Typography color="textSecondary">
-//               Cập nhật: {new Date(lastUpdate).toLocaleString()}
-//             </Typography>
-//           </CardContent>
-//         </Grid>
-//         <Grid
-//           item
-//           component={Card}
-//           xs={12}
-//           md={5}
-//           lg={2}
-//           className={cx(styles.card, styles.active)}
-//         >
-//           <CardContent>
-//             <Typography color="textSecondary" gutterBottom>
-//               ĐANG NHIỄM BỆNH
-//             </Typography>
-//             <Typography variant="h5">
-//               <CountUp start={0} end={active} duration={1.8} separator="." />
-//             </Typography>
-//             <Typography color="textSecondary">
-//               Cập nhật: {new Date(lastUpdate).toLocaleString()}
-//             </Typography>
-//           </CardContent>
-//         </Grid>
-//         <Grid
-//           item
-//           component={Card}
-//           xs={12}
-//           md={5}
-//           lg={2}
-//           className={cx(styles.card, styles.recovered)}
-//         >
-//           <CardContent>
-//             <Typography color="textSecondary" gutterBottom>
-//               KHỎI BỆNH
-//             </Typography>
-//             <Typography variant="h5">
-//               <CountUp start={0} end={recovered} duration={1.8} separator="." />
-//             </Typography>
-//             <Typography color="textSecondary">
-//               Cập nhật: {new Date(lastUpdate).toLocaleString()}
-//             </Typography>
-//           </CardContent>
-//         </Grid>
-//         <Grid
-//           item
-//           component={Card}
-//           xs={12}
-//           md={5}
-//           lg={2}
-//           className={cx(styles.card, styles.deaths)}
-//         >
-//           <CardContent>
-//             <Typography color="textSecondary" gutterBottom>
-//               TỬ VONG
-//             </Typography>
-//             <Typography variant="h5">
-//               <CountUp start={0} end={deaths} duration={1.8} separator="." />
-//             </Typography>
-//             <Typography color="textSecondary">
-//               Cập nhật: {new Date(lastUpdate).toLocaleString()}
-//             </Typography>
-//           </CardContent>
-//         </Grid>
-//       </Grid>
-//     </div>
-//   );
-// };
+  return (
+    <Row className="today-row justify-content-center">
+      <Card
+        title="Confirmed"
+        className="confirmed"
+        data={state.confirmedDaily}
+      />
 
-const Cards = () => <div>hi</div>;
+      <Card
+        title="Recovered"
+        className="recovered"
+        data={state.recoveredDaily}
+      />
+
+      <Card data={state.deathDaily} title="Deaths" className="deaths" />
+
+      <Card data={state.activeDaily} title="Active" className="active" />
+    </Row>
+  );
+};
+
 export default Cards;

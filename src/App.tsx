@@ -1,8 +1,9 @@
 import { useEffect, useReducer, createContext } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchData, extractDaily } from "./api";
 import styles from "./App.module.css";
 import ncovImage from "./images/image.png";
-import { CountryPicker, Chart } from "./components";
+import { CountryPicker, Chart, Cards } from "./components";
 
 export const AppContext = createContext<any>(undefined);
 
@@ -38,9 +39,10 @@ const App = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className="App">
       <img className={styles.image} src={ncovImage} alt="COVID-19" />
       <AppContext.Provider value={[state, dispatch]}>
+        <Cards />
         <CountryPicker />
         <Chart />
       </AppContext.Provider>
