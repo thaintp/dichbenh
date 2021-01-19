@@ -1,24 +1,34 @@
-/* .container {
-  margin: 50px 0;
-  width: 100%;
+.container {
+  margin: 0 !important;
 }
-
-.card {
-  margin: 1% 1% !important;
-}
-
-.infected {
-  border-bottom: 10px solid rgba(0, 0, 255, 0.5);
-}
-
-.active {
-  border-bottom: 10px solid #ff9c00;
+.confirmed {
+  color: #002c57;
+  background-image: linear-gradient(
+    rgb(165, 201, 253) 0%,
+    rgb(189, 229, 252) 100%
+  );
 }
 
 .recovered {
-  border-bottom: 10px solid rgba(0, 255, 0, 0.5);
+  color: #005c25;
+  background-image: linear-gradient(
+    rgb(155, 232, 156) 0%,
+    rgb(205, 249, 125) 100%
+  );
 }
 
 .deaths {
-  border-bottom: 10px solid rgba(255, 0, 0, 0.5);
-} */
+  color: #5a0401;
+  background-image: linear-gradient(
+    rgb(254, 134, 131) 0%,
+    rgb(255, 157, 155) 100%
+  );
+}
+
+.active {
+  color: #582801;
+  background-image: linear-gradient(
+    rgb(246, 206, 104) 0%,
+    rgb(253, 166, 130) 100%
+  );
+}

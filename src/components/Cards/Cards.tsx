@@ -1,28 +1,28 @@
 import React, { useContext } from "react";
 import { Row } from "react-bootstrap";
+
 import { AppContext } from "../../App";
-import Card from "./Card";
+
+import Card from "./Card/Card";
+import styles from "./Cards.module.css";
 
 const Cards = () => {
   const [state] = useContext(AppContext);
 
   return (
-    <Row className="today-row justify-content-center">
+    <Row className={"justify-content-center " + styles.container}>
       <Card
         title="Confirmed"
-        className="confirmed"
+        className={styles.confirmed}
         data={state.confirmedDaily}
       />
-
       <Card
         title="Recovered"
-        className="recovered"
+        className={styles.recovered}
         data={state.recoveredDaily}
       />
-
-      <Card data={state.deathDaily} title="Deaths" className="deaths" />
-
-      <Card data={state.activeDaily} title="Active" className="active" />
+      <Card data={state.deathDaily} title="Deaths" className={styles.deaths} />
+      <Card data={state.activeDaily} title="Active" className={styles.active} />
     </Row>
   );
 };

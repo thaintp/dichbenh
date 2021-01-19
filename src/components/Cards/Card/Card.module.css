@@ -1,0 +1,14 @@
+.container {
+  font-weight: 700;
+  font-family: sans-serif;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
+@media screen and (max-width: 579px) {
+  .container {
+    min-width: 80% !important;
+    max-width: 80% !important;
+  }
+}

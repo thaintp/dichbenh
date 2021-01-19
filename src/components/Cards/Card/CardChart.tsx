@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Line } from "react-chartjs-2";
-import { AppContext } from "../../App";
+import { AppContext } from "../../../App";
 
 const CardChart = ({ data }: { data: number[] }) => {
   const [state] = useContext(AppContext);
@@ -11,7 +11,7 @@ const CardChart = ({ data }: { data: number[] }) => {
         datasets: [
           {
             label: "Confirmed",
-            data: data.map((x, i) => x - data[i - 1]).slice(-20),
+            data: data.map((x, i) => data[i - 1] - x).slice(-20),
             borderColor: "#4285f4",
             fill: false,
             pointRadius: 0,

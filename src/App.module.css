@@ -3,21 +3,18 @@ body {
 }
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 50px 0;
+  text-align: center;
+  padding: 0 !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .image {
+  margin-top: 20px;
+  margin-bottom: 10px;
   width: 370px;
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 50px 5%;
-  }
   .image {
     width: 80%;
   }
