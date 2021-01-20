@@ -15,28 +15,28 @@ const Chart = () => {
           labels: state.dateDaily,
           datasets: [
             {
-              label: "Confirmed",
+              label: "Tổng ca nhiễm",
               data: state.confirmedDaily,
               borderColor: "#4285f4",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
             },
             {
-              label: "Recovered",
+              label: "Khỏi",
               data: state.recoveredDaily,
               borderColor: "#0c9d58",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
             },
             {
-              label: "Deaths",
+              label: "Tử vong",
               data: state.deathDaily,
               borderColor: "#db4337",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
             },
             {
-              label: "Active",
+              label: "Đang nhiễm",
               data: state.activeDaily,
               borderColor: "#f4b400",
               fill: false,

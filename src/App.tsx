@@ -44,7 +44,7 @@ const App = () => {
     <div className={styles.container}>
       <img className={styles.image} src={ncovImage} alt="COVID-19" />
       <AppContext.Provider value={[state, dispatch]}>
-        <div>Last Updated: {state.dateDaily?.slice(-1)[0]}</div>
+        <div>Cập nhật: {state.dateDaily?.slice(-1)[0]}</div>
         <CountryPicker />
         <Cards />
         <Chart />

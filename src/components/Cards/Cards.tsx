@@ -12,17 +12,21 @@ const Cards = () => {
   return (
     <Row className={"justify-content-center " + styles.container}>
       <Card
-        title="Confirmed"
+        title="Tổng ca nhiễm"
         className={styles.confirmed}
         data={state.confirmedDaily}
       />
       <Card
-        title="Recovered"
+        data={state.activeDaily}
+        title="Đang nhiễm"
+        className={styles.active}
+      />
+      <Card
+        title="Khỏi"
         className={styles.recovered}
         data={state.recoveredDaily}
       />
-      <Card data={state.deathDaily} title="Deaths" className={styles.deaths} />
-      <Card data={state.activeDaily} title="Active" className={styles.active} />
+      <Card data={state.deathDaily} title="Tử vong" className={styles.deaths} />
     </Row>
   );
 };
