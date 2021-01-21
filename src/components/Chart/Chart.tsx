@@ -3,13 +3,11 @@ import { Line } from "react-chartjs-2";
 import { AppContext } from "../../App";
 import { isMobile } from "react-device-detect";
 
-import styles from "./Chart.module.css";
-
 const Chart = () => {
   const [state] = useContext(AppContext);
 
   return (
-    <div className={styles.container}>
+    <div>
       <Line
         data={{
           labels: state.dateDaily,

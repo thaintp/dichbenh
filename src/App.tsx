@@ -1,35 +1,14 @@
 import { useEffect, useReducer, createContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { stateReducer } from "./reducers";
 import { CountryPicker, Chart, Cards } from "./components";
 import ncovImage from "./images/image.png";
-import { fetchData, extractDaily } from "./api";
+import { fetchData } from "./api";
 
 import styles from "./App.module.css";
 
 export const AppContext = createContext<any>(undefined);
-
-const stateReducer = (state: fetchedDataType, action: Action) => {
-  switch (action.type) {
-    case "INIT":
-      return {
-        ...action.payload,
-        where: "Global",
-      };
-    case "COUNTRY_CHANGE":
-      return {
-        ...state,
-        ...extractDaily(
-          action.payload === "Global"
-            ? state.worldChart
-            : state.data[action.payload]
-        ),
-        where: action.payload,
-      };
-    default:
-      return state;
-  }
-};
 
 const App = () => {
   const [state, dispatch] = useReducer(stateReducer, {});
