@@ -3,11 +3,12 @@ import { Line } from "react-chartjs-2";
 import { AppContext } from "../../../App";
 
 const CardChart = ({ data }: { data: number[] }) => {
-  const [state] = useContext(AppContext);
+  const [{ dateDaily }] = useContext(AppContext);
+
   return (
     <Line
       data={{
-        labels: state.dateDaily.slice(-20),
+        labels: dateDaily.slice(-20),
         datasets: [
           {
             label: "Confirmed",

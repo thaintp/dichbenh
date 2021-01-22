@@ -14,6 +14,7 @@ const Card = ({
   className: string;
 }) => {
   const lastChange = data?.slice(-1)[0] - data?.slice(-2)[0];
+
   return data ? (
     <Col md={2} sm={4} xs={6} className={className + " " + styles.container}>
       <CountUp end={data.slice(-1)[0]} duration={2}></CountUp>

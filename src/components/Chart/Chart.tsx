@@ -4,38 +4,47 @@ import { AppContext } from "../../App";
 import { isMobile } from "react-device-detect";
 
 const Chart = () => {
-  const [state] = useContext(AppContext);
+  const [
+    {
+      dateDaily,
+      confirmedDaily,
+      recoveredDaily,
+      deathDaily,
+      activeDaily,
+      where,
+    },
+  ] = useContext(AppContext);
 
   return (
     <div>
       <Line
         data={{
-          labels: state.dateDaily,
+          labels: dateDaily,
           datasets: [
             {
               label: "Tổng ca nhiễm",
-              data: state.confirmedDaily,
+              data: confirmedDaily,
               borderColor: "#4285f4",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
             },
             {
               label: "Khỏi",
-              data: state.recoveredDaily,
+              data: recoveredDaily,
               borderColor: "#0c9d58",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
             },
             {
               label: "Tử vong",
-              data: state.deathDaily,
+              data: deathDaily,
               borderColor: "#db4337",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
             },
             {
               label: "Đang nhiễm",
-              data: state.activeDaily,
+              data: activeDaily,
               borderColor: "#f4b400",
               fill: false,
               pointRadius: isMobile ? 1 : 3,
@@ -63,9 +72,7 @@ const Chart = () => {
           },
           title: {
             display: true,
-            text: `Biểu đồ của ${
-              state?.where !== "Global" ? state?.where : "thế giới"
-            }`,
+            text: `Biểu đồ của ${where !== "Global" ? where : "thế giới"}`,
           },
           scales: {
             xAxes: [

@@ -7,26 +7,20 @@ import Card from "./Card/Card";
 import styles from "./Cards.module.css";
 
 const Cards = () => {
-  const [state] = useContext(AppContext);
+  const [
+    { confirmedDaily, activeDaily, recoveredDaily, deathDaily },
+  ] = useContext(AppContext);
 
   return (
     <Row className={"justify-content-center " + styles.container}>
       <Card
         title="Tổng ca nhiễm"
         className={styles.confirmed}
-        data={state.confirmedDaily}
+        data={confirmedDaily}
       />
-      <Card
-        data={state.activeDaily}
-        title="Đang nhiễm"
-        className={styles.active}
-      />
-      <Card
-        title="Khỏi"
-        className={styles.recovered}
-        data={state.recoveredDaily}
-      />
-      <Card data={state.deathDaily} title="Tử vong" className={styles.deaths} />
+      <Card data={activeDaily} title="Đang nhiễm" className={styles.active} />
+      <Card title="Khỏi" className={styles.recovered} data={recoveredDaily} />
+      <Card data={deathDaily} title="Tử vong" className={styles.deaths} />
     </Row>
   );
 };
