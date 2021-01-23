@@ -3,8 +3,8 @@ import { Row } from "react-bootstrap";
 
 import { AppContext } from "../../App";
 
-import Card from "./Card/Card";
-import styles from "./Cards.module.css";
+import Card from "./Card";
+import styles from "./index.module.css";
 
 const Cards = () => {
   const [

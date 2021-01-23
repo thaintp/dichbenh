@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Form } from "react-bootstrap";
 import { AppContext } from "../../App";
 
-import styles from "./CountryPicker.module.css";
+import styles from "./index.module.css";
 
 const CountryPicker = () => {
   const [{ where, countriesName }, dispatch] = useContext(AppContext);

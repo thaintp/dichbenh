@@ -2,7 +2,7 @@ import { Col } from "react-bootstrap";
 import CardChart from "./CardChart";
 import CountUp from "react-countup";
 
-import styles from "./Card.module.css";
+import styles from "./index.module.css";
 
 const Card = ({
   title,
