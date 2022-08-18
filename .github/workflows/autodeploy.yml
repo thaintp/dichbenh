@@ -32,6 +32,7 @@ jobs:
   update-image:
     name: Update image
     runs-on: ubuntu-latest
+    if: ${{ !failure() && !cancelled() }}
     needs: [unit-test]
 
     steps:
