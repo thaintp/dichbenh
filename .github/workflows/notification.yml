@@ -33,6 +33,6 @@ jobs:
             Workflow: ${{ github.event.workflow_run.name }}
             Link: ${{ github.event.workflow_run.html_url }}
             Status: Failure
-            Date: ${{ steps.date.outputs.date }}
-            Commit: ${{ github.event.commits[0].message }} - ${{ github.event.commits[0].url }}
+            Date: ${{ github.event.repository.updated_at }}
+            Commit: ${{ github.event }} - ${{ github.event.commit }}
             Notify by: Github Actions
