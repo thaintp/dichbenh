@@ -1,0 +1,36 @@
+name: Notification
+
+on:
+  workflow_run:
+    workflows:
+      - Auto deploy
+      - E2E testing
+    types: [completed]
+    branches: [main]
+
+jobs:
+  log-failure-event:
+    name: Log event
+    runs-on: ubuntu-latest
+
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+
+    steps:
+      - name: Send notification mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.mandrillapp.com
+          server_port: 465
+          username: Aha-Actions-Bot
+          password: ${{ secrets.MANDRILL_API_KEY }}
+          subject:
+            ${{ github.repository }} - ${{ github.event.workflow_run.name }} -
+            Failed - Github Actions
+          to: thaintp@dgroup.co
+          from: Aha-Actions-Bot <aha-actions-bot@aha.is>
+          body: |
+            Repository: ${{ github.repository }}
+            Workflow: ${{ github.event.workflow_run.name }}
+            Link: ${{ github.event.workflow_run.html_url }}
+            Status: Failure
+            Notify by: Github Actions
