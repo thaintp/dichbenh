@@ -16,9 +16,11 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
 
     steps:
-       - name: Logging
-        run: |
-          echo "${{toJSON(github.event)}}"
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - name: Send notification mail
         uses: dawidd6/action-send-mail@v3
         with:
