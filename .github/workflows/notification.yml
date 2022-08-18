@@ -16,10 +16,11 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
 
     steps:
+       - name: Logging
+        run: |
+          echo "${{toJSON(github.event)}}"
       - name: Send notification mail
         uses: dawidd6/action-send-mail@v3
-        run: |
-          echo "${{ toJSON(github.event) }}"
         with:
           server_address: smtp.mandrillapp.com
           server_port: 465
