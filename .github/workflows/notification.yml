@@ -24,13 +24,15 @@ jobs:
           username: Aha-Actions-Bot
           password: ${{ secrets.MANDRILL_API_KEY }}
           subject:
-            ${{ github.repository }} - ${{ github.event.workflow_run.name }} -
-            Failed - Github Actions
-          to: thaintp@dgroup.co
+            Aha system - ${{ github.event.workflow_run.name }} -
+            Failed - ${{ steps.date.outputs.date }} - ${{ github.event.commits[0].message }} - Github Actions
+          to: hieult@dgroup.co
           from: Aha-Actions-Bot <aha-actions-bot@aha.is>
           body: |
             Repository: ${{ github.repository }}
             Workflow: ${{ github.event.workflow_run.name }}
             Link: ${{ github.event.workflow_run.html_url }}
             Status: Failure
+            Date: ${{ steps.date.outputs.date }}
+            Commit: ${{ github.event.commits[0].message }} - ${{ github.event.commits[0].url }}
             Notify by: Github Actions
